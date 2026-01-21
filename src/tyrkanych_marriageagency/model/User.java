@@ -19,4 +19,9 @@ public abstract class User {
     public String getEmail() {
         return email;
     }
+
+    public String getId() {
+        return id;
+    }
+
 }

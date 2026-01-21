@@ -1,20 +1,28 @@
 package tyrkanych_marriageagency.service;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 import tyrkanych_marriageagency.model.Client;
 import tyrkanych_marriageagency.model.Match;
 
 public class MatcherService {
 
-    public Optional<Match> tryMatch(Client a, Client b) {
+    private final List<Match> matches = new ArrayList<>();
 
-        boolean sameCity =
-              a.getProfile().getInterests().size() > 0 &&
-                    b.getProfile().getInterests().size() > 0;
+    public List<Match> getMatches() {
+        return matches;
+    }
 
-        if (sameCity) {
-            return Optional.of(new Match(a, b));
+    // Клієнт A лайкає клієнта B
+    public void like(Client a, Client b) {
+
+        a.getProfile().like(b); // зберегти лайк
+
+        // Перевірка взаємного лайку
+        if (b.getProfile().hasLiked(a)) {
+            Match match = new Match(a, b);
+            matches.add(match);
+            System.out.println("Новий матч: " + a.getEmail() + " ❤️ " + b.getEmail());
         }
-        return Optional.empty();
     }
 }

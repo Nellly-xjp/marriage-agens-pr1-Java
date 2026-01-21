@@ -18,4 +18,24 @@ public class Match {
         this.createdAt = LocalDateTime.now();
         this.status = MatchStatus.ACTIVE;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public Client getClientA() {
+        return clientA;
+    }
+
+    public Client getClientB() {
+        return clientB;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public MatchStatus getStatus() {
+        return status;
+    }
 }

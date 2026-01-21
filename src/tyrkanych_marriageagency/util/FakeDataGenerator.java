@@ -12,11 +12,6 @@ public class FakeDataGenerator {
 
     public static Client generateClient() {
 
-        Client client = new Client(
-              faker.internet().emailAddress(),
-              faker.internet().password(8, 12)
-        );
-
         Profile profile = new Profile(
               faker.number().numberBetween(18, 60),
               faker.address().city(),
@@ -26,7 +21,10 @@ public class FakeDataGenerator {
         profile.getInterests().add(new Interest("Music"));
         profile.getInterests().add(new Interest("Travel"));
 
-        client.setProfile(profile);
-        return client;
+        return new Client(
+              faker.internet().emailAddress(),
+              faker.internet().password(8, 12),
+              profile
+        );
     }
 }
