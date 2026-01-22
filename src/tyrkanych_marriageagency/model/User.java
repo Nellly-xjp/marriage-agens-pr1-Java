@@ -24,4 +24,7 @@ public abstract class User {
         return id;
     }
 
+    public String getPassword() {
+        return password;
+    }
 }

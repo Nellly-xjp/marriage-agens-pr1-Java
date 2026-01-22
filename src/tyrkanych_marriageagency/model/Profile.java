@@ -7,35 +7,58 @@ import java.util.Set;
 
 public class Profile {
 
-    private final int age;
-    private final String city;
-    private final Gender gender;
     private final List<Interest> interests = new ArrayList<>();
     private final Set<String> likedClients = new HashSet<>();
+    private final Gender gender;
+    private int age;
+    private String city;
+    private String description = "";
 
     public Profile(int age, String city, Gender gender) {
         this.age = age;
         this.city = city;
-        this.gender = gender;
+        this.gender = gender != null ? gender : Gender.MALE; // дефолт MALE
+    }
+
+
+    public Profile(int age, String city) {
+        this(age, city, Gender.MALE);
     }
 
     public int getAge() {
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getCity() {
         return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Gender getGender() {
         return gender;
     }
 
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public List<Interest> getInterests() {
         return interests;
     }
 
-    // лайки
+
     public void like(Client client) {
         likedClients.add(client.getId());
     }

@@ -2,15 +2,14 @@ package tyrkanych_marriageagency.model;
 
 public class Client extends User {
 
-    private final Profile profile;
+
+    private Profile profile;
 
     public Client(String email, String password, Profile profile) {
         super(email, password);
-        if (profile == null) {
-            throw new IllegalArgumentException("Profile cannot be null");
-        }
         this.profile = profile;
     }
+
 
     @Override
     public String getRole() {
@@ -19,5 +18,9 @@ public class Client extends User {
 
     public Profile getProfile() {
         return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 }

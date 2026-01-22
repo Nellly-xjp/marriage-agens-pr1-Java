@@ -13,16 +13,19 @@ public class MatcherService {
         return matches;
     }
 
-    // Клієнт A лайкає клієнта B
     public void like(Client a, Client b) {
+        if (a.getProfile() == null || b.getProfile() == null) {
+            return;
+        }
 
-        a.getProfile().like(b); // зберегти лайк
+        a.getProfile().like(b);
 
-        // Перевірка взаємного лайку
-        if (b.getProfile().hasLiked(a)) {
-            Match match = new Match(a, b);
-            matches.add(match);
-            System.out.println("Новий матч: " + a.getEmail() + " ❤️ " + b.getEmail());
+        boolean alreadyMatched = matches.stream()
+              .anyMatch(m -> (m.getClientA() == a && m.getClientB() == b)
+                    || (m.getClientA() == b && m.getClientB() == a));
+
+        if (b.getProfile().hasLiked(a) && !alreadyMatched) {
+            matches.add(new Match(a, b));
         }
     }
 }
