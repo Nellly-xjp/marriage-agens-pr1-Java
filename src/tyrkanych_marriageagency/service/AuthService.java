@@ -2,6 +2,7 @@ package tyrkanych_marriageagency.service;
 
 import tyrkanych_marriageagency.model.User;
 import tyrkanych_marriageagency.repository.ClientRepository;
+import tyrkanych_marriageagency.util.PasswordUtil;
 import tyrkanych_marriageagency.validation.UserValidator;
 
 public class AuthService {
@@ -23,7 +24,9 @@ public class AuthService {
             throw new IllegalArgumentException("Користувача не знайдено");
         }
 
-        if (!user.getPassword().equals(password)) {
+        // 🔐 хешуємо введений пароль і порівнюємо з хешем у базі
+        String hashedInput = PasswordUtil.hash(password);
+        if (!user.getPassword().equals(hashedInput)) {
             throw new IllegalArgumentException("Невірний пароль");
         }
 

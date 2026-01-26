@@ -3,6 +3,7 @@ package tyrkanych_marriageagency.service;
 import tyrkanych_marriageagency.dto.UserRegisterDto;
 import tyrkanych_marriageagency.model.Client;
 import tyrkanych_marriageagency.repository.ClientRepository;
+import tyrkanych_marriageagency.util.PasswordUtil;
 import tyrkanych_marriageagency.validation.UserValidator;
 
 public class UserService {
@@ -25,7 +26,10 @@ public class UserService {
             throw new IllegalStateException("Користувач з таким email вже існує");
         }
 
-        Client client = new Client(dto.email(), dto.password(), null); // профіль null
+        // 🔐 хешуємо пароль перед збереженням
+        String hashedPassword = PasswordUtil.hash(dto.password());
+
+        Client client = new Client(dto.email(), hashedPassword, null);
         clientRepository.create(client);
         return client;
     }
