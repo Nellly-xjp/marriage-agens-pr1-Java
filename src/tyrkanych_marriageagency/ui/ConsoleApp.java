@@ -2,6 +2,7 @@ package tyrkanych_marriageagency.ui;
 
 import tyrkanych_marriageagency.service.AuthService;
 import tyrkanych_marriageagency.service.MatcherService;
+import tyrkanych_marriageagency.service.MessageService;
 import tyrkanych_marriageagency.service.UserService;
 import tyrkanych_marriageagency.ui.pages.AuthView;
 import tyrkanych_marriageagency.ui.pages.MainMenuView;
@@ -14,13 +15,14 @@ public class ConsoleApp {
         UserService userService = new UserService(uow.clients());
         AuthService authService = new AuthService(uow.clients());
         MatcherService matcherService = new MatcherService();
+        MessageService messageService = new MessageService(); // <- додано
 
         while (true) {
             var authView = new AuthView(userService, authService, uow);
             var user = authView.show(); // повертає Client після входу або реєстрації
             if (user != null) {
-                new MainMenuView(user, uow,
-                      matcherService).show();
+                new MainMenuView(user, uow, matcherService,
+                      messageService).show(); // <- передаємо 4 параметри
             }
         }
     }

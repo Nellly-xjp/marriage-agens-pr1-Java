@@ -1,31 +1,32 @@
 package tyrkanych_marriageagency.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import tyrkanych_marriageagency.model.Client;
-import tyrkanych_marriageagency.model.Match;
 
 public class MatcherService {
 
-    private final List<Match> matches = new ArrayList<>();
+    private final Set<String> matches = new HashSet<>();
 
-    public List<Match> getMatches() {
-        return matches;
-    }
-
-    public void like(Client a, Client b) {
-        if (a.getProfile() == null || b.getProfile() == null) {
+    public void like(Client from, Client to) {
+        if (from.getProfile() == null || to.getProfile() == null) {
             return;
         }
 
-        a.getProfile().like(b);
+        from.getProfile().like(to);
 
-        boolean alreadyMatched = matches.stream()
-              .anyMatch(m -> (m.getClientA() == a && m.getClientB() == b)
-                    || (m.getClientA() == b && m.getClientB() == a));
-
-        if (b.getProfile().hasLiked(a) && !alreadyMatched) {
-            matches.add(new Match(a, b));
+        if (to.getProfile().hasLiked(from)) {
+            matches.add(key(from, to));
+            matches.add(key(to, from));
+            System.out.println("💖 MATCH!");
         }
+    }
+
+    public boolean isMatch(Client a, Client b) {
+        return matches.contains(key(a, b));
+    }
+
+    private String key(Client a, Client b) {
+        return a.getId() + ":" + b.getId();
     }
 }

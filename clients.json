@@ -2,11 +2,13 @@
   {
     "profile": {
       "interests": [],
-      "likedClients": [],
+      "likedClients": [
+        "be6f1144-b7aa-4749-8b41-2c62d4a20e7f"
+      ],
       "gender": "MALE",
-      "age": 2009,
-      "city": "Uzhgorod",
-      "description": "adpk",
+      "age": 18,
+      "city": "Uzhhorod",
+      "description": "asnklm",
       "firstName": "Illia",
       "lastName": "Ignatjo"
     },
@@ -19,22 +21,7 @@
       "interests": [],
       "likedClients": [],
       "gender": "MALE",
-      "age": 18,
-      "city": "Uzhhorod",
-      "description": "shukaju ludej",
-      "firstName": "Danna",
-      "lastName": "Lol"
-    },
-    "id": "9d9405a4-58bd-4997-b0ae-463a52a638c4",
-    "email": "Dana@gmail.com",
-    "password": "0fc2c0196065a69f123f79a81579bd1174a0b854f4b6b355bfc607bbef3ea989"
-  },
-  {
-    "profile": {
-      "interests": [],
-      "likedClients": [],
-      "gender": "MALE",
-      "age": 206,
+      "age": 19,
       "city": "Uzhhorod",
       "description": "love ",
       "firstName": "Anna",
@@ -43,5 +30,35 @@
     "id": "be6f1144-b7aa-4749-8b41-2c62d4a20e7f",
     "email": "anna@gmail.com",
     "password": "6b4f2790d01a6815ec2c7ac8d0af0f6862a012edea70d28fd73997e33dc393a7"
+  },
+  {
+    "profile": {
+      "interests": [],
+      "likedClients": [],
+      "gender": "MALE",
+      "age": 20,
+      "city": "Uzhhorod",
+      "description": "usdbhsi sdbici ",
+      "firstName": "Oleg",
+      "lastName": "Percheny"
+    },
+    "id": "9258f03f-fbb6-47e0-a02f-e0d345881c89",
+    "email": "dominator228@gmail.com",
+    "password": "e18bbeb93bbf0d4ce247449f528d0e92a6591f6e48d6e25ede15a37900017bfd"
+  },
+  {
+    "profile": {
+      "interests": [],
+      "likedClients": [],
+      "gender": "MALE",
+      "age": 19,
+      "city": "Uzhhorod",
+      "description": "jyhtre",
+      "firstName": "Danna",
+      "lastName": "il"
+    },
+    "id": "0bd8ee36-ed94-49ec-957a-f7cb85e690cf",
+    "email": "Dana@gmail.com",
+    "password": "d3fcb5128a50a36be120396e06fd9306d4ceedeaed8cbd805ce78933c33eba56"
   }
 ]

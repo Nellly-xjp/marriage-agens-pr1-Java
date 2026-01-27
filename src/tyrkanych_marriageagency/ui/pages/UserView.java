@@ -3,7 +3,6 @@ package tyrkanych_marriageagency.ui.pages;
 import java.util.Scanner;
 import tyrkanych_marriageagency.model.Client;
 import tyrkanych_marriageagency.service.ProfileService;
-import tyrkanych_marriageagency.ui.forms.ProfileForm;
 import tyrkanych_marriageagency.unitofwork.UnitOfWork;
 import tyrkanych_marriageagency.util.ConsoleColors;
 
@@ -20,9 +19,7 @@ public class UserView {
 
     public void show() {
         while (true) {
-            System.out.println(ConsoleColors.YELLOW +
-                  "\n=== МОЯ АНКЕТА ===" +
-                  ConsoleColors.RESET);
+            System.out.println(ConsoleColors.YELLOW + "\n=== МОЯ АНКЕТА ===" + ConsoleColors.RESET);
 
             printProfile();
 
@@ -37,7 +34,8 @@ public class UserView {
                 case 0 -> {
                     return;
                 }
-                default -> System.out.println("❌ Невірний вибір");
+                default -> System.out.println(
+                      ConsoleColors.RED + "❌ Невірний вибір" + ConsoleColors.RESET);
             }
         }
     }
@@ -57,21 +55,47 @@ public class UserView {
 
     private void editProfile() {
         ProfileService profileService = new ProfileService(uow.clients());
-        ProfileForm form = new ProfileForm(client, profileService);
-
-        int age = form.askAge();
-        if (age < 18) {
-            System.out.println(ConsoleColors.RED +
-                  " Вік має бути не менше 18 років" +
-                  ConsoleColors.RESET);
+        // Змінюємо тільки існуючу анкету
+        int age;
+        try {
+            System.out.print("Вік: ");
+            age = Integer.parseInt(sc.nextLine());
+            if (age < 18) {
+                System.out.println(
+                      ConsoleColors.RED + "Вік має бути не менше 18 років" + ConsoleColors.RESET);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println(ConsoleColors.RED + "Невірне число" + ConsoleColors.RESET);
             return;
         }
 
-        form.fillProfile(age);
-        uow.commit();
+        System.out.print("Ім'я: ");
+        String firstName = sc.nextLine();
 
-        System.out.println(ConsoleColors.GREEN +
-              " Операція успішна!" +
-              ConsoleColors.RESET);
+        System.out.print("Прізвище: ");
+        String lastName = sc.nextLine();
+
+        System.out.print("Місто: ");
+        String city = sc.nextLine();
+
+        System.out.print("Опис: ");
+        String description = sc.nextLine();
+
+        profileService.createOrUpdateProfile(
+              client,
+              age,
+              city,
+              description,
+              client.getProfile() != null ? client.getProfile().getInterests() : null
+        );
+
+        // Оновлюємо ім'я/прізвище окремо
+        client.getProfile().setFirstName(firstName);
+        client.getProfile().setLastName(lastName);
+
+        uow.commit();
+        System.out.println(
+              ConsoleColors.GREEN + "✅ Анкета успішно оновлена!" + ConsoleColors.RESET);
     }
 }
