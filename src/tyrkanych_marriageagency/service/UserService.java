@@ -26,7 +26,6 @@ public class UserService {
             throw new IllegalStateException("Користувач з таким email вже існує");
         }
 
-        // 🔐 хешуємо пароль перед збереженням
         String hashedPassword = PasswordUtil.hash(dto.password());
 
         Client client = new Client(dto.email(), hashedPassword, null);

@@ -14,11 +14,17 @@ public class ProfileService {
         this.clientRepository = clientRepository;
     }
 
-    public void createOrUpdateProfile(Client client, int age, String city, String description,
-          List<Interest> interests) {
+    public void createOrUpdateProfile(
+          Client client,
+          int age,
+          String city,
+          String description,
+          List<Interest> interests
+    ) {
         if (client.getProfile() == null) {
             client.setProfile(new Profile(age, city, null));
         }
+
         Profile profile = client.getProfile();
         profile.setAge(age);
         profile.setCity(city);
@@ -29,4 +35,3 @@ public class ProfileService {
         clientRepository.update(client);
     }
 }
-

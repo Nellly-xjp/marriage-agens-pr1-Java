@@ -13,6 +13,9 @@ public class Profile {
     private int age;
     private String city;
     private String description = "";
+    private String firstName;
+    private String lastName;
+
 
     public Profile(int age, String city, Gender gender) {
         this.age = age;
@@ -45,6 +48,21 @@ public class Profile {
         return gender;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getDescription() {
         return description;
@@ -67,3 +85,4 @@ public class Profile {
         return likedClients.contains(client.getId());
     }
 }
+

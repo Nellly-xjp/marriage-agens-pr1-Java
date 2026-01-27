@@ -4,7 +4,6 @@ import java.security.MessageDigest;
 
 public class PasswordUtil {
 
-    // хешуємо пароль SHA-256
     public static String hash(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");

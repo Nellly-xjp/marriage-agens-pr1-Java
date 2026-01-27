@@ -12,7 +12,6 @@ public class FakeDataGenerator {
 
     public static Client generateClient() {
 
-        // Створюємо профіль з випадковим Gender
         Profile profile = new Profile(
               faker.number().numberBetween(18, 60),
               faker.address().city(),
