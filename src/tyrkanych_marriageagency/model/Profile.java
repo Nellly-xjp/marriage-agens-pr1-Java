@@ -10,6 +10,7 @@ public class Profile {
     private final List<Interest> interests = new ArrayList<>();
     private final Set<String> likedClients = new HashSet<>();
     private final Gender gender;
+    private final List<String> complaints = new ArrayList<>();
     private int age;
     private String city;
     private String description = "";
@@ -23,9 +24,16 @@ public class Profile {
         this.gender = gender != null ? gender : Gender.MALE; // дефолт MALE
     }
 
-
     public Profile(int age, String city) {
         this(age, city, Gender.MALE);
+    }
+
+    public void addComplaint(String text) {
+        complaints.add(text);
+    }
+
+    public List<String> getComplaints() {
+        return complaints;
     }
 
     public int getAge() {

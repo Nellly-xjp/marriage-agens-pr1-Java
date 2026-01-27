@@ -16,7 +16,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     private final String file = "clients.json";
 
     public ClientRepositoryImpl() {
-        load(); // Завантажуємо дані з JSON при старті
+        load();
     }
 
     @Override

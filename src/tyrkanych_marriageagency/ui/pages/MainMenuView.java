@@ -61,7 +61,6 @@ public class MainMenuView {
         }
     }
 
-    // ---------- АНКЕТИ ----------
     private void browseProfiles() {
         List<Client> clients = new ArrayList<>(filterProfilesForUser());
         Collections.shuffle(clients);
@@ -85,7 +84,7 @@ public class MainMenuView {
         }
     }
 
-    // ---------- ХТО МЕНЕ ЛАЙКНУВ ----------
+
     private void showWhoLikedMe() {
         List<Client> likedMe = uow.clients().findAll().stream()
               .filter(c ->
@@ -116,7 +115,6 @@ public class MainMenuView {
         }
     }
 
-    // ---------- MATCH ----------
     private void showMatches() {
         boolean found = false;
 
@@ -151,7 +149,6 @@ public class MainMenuView {
         }
     }
 
-    // ---------- ПОВІДОМЛЕННЯ ----------
     private void showMessages() {
         List<Message> inbox = messageService.inbox(currentUser.getId());
 
@@ -171,7 +168,6 @@ public class MainMenuView {
         }
     }
 
-    // ---------- ФІЛЬТР ----------
     private List<Client> filterProfilesForUser() {
         int age = currentUser.getProfile().getAge();
         String city = currentUser.getProfile().getCity();

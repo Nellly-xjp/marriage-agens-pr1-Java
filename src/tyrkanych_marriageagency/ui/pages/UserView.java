@@ -55,7 +55,6 @@ public class UserView {
 
     private void editProfile() {
         ProfileService profileService = new ProfileService(uow.clients());
-        // Змінюємо тільки існуючу анкету
         int age;
         try {
             System.out.print("Вік: ");
@@ -90,7 +89,6 @@ public class UserView {
               client.getProfile() != null ? client.getProfile().getInterests() : null
         );
 
-        // Оновлюємо ім'я/прізвище окремо
         client.getProfile().setFirstName(firstName);
         client.getProfile().setLastName(lastName);
 

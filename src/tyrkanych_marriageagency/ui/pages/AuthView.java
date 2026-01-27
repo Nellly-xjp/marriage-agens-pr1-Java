@@ -3,6 +3,8 @@ package tyrkanych_marriageagency.ui.pages;
 import java.util.Scanner;
 import tyrkanych_marriageagency.dto.UserRegisterDto;
 import tyrkanych_marriageagency.model.Client;
+import tyrkanych_marriageagency.model.User;
+import tyrkanych_marriageagency.repository.AdminRepository;
 import tyrkanych_marriageagency.service.AuthService;
 import tyrkanych_marriageagency.service.ProfileService;
 import tyrkanych_marriageagency.service.UserService;
@@ -16,18 +18,20 @@ public class AuthView {
     private final AuthService authService;
     private final UnitOfWork uow;
     private final Scanner sc = new Scanner(System.in);
+    private final AdminRepository adminRepository;
 
-    public AuthView(UserService userService, AuthService authService, UnitOfWork uow) {
+    public AuthView(UserService userService, AuthService authService, UnitOfWork uow,
+          AdminRepository adminRepository) {
         this.userService = userService;
         this.authService = authService;
         this.uow = uow;
+        this.adminRepository = adminRepository;
     }
 
-    public Client show() {
+    public User show() {
         while (true) {
-            System.out.println(ConsoleColors.BLUE +
-                  "\n=== ШЛЮБНЕ АГЕНТСТВО ===" +
-                  ConsoleColors.RESET);
+            System.out.println(
+                  ConsoleColors.BLUE + "\n=== ШЛЮБНЕ АГЕНТСТВО ===" + ConsoleColors.RESET);
             System.out.println("1 - Вхід");
             System.out.println("2 - Реєстрація");
             System.out.println("0 - Вийти з програми");
@@ -37,24 +41,24 @@ public class AuthView {
 
             switch (choice) {
                 case 1 -> {
-                    Client user = login();
+                    User user = login(); // повертає User
                     if (user != null) {
                         return user;
                     }
                 }
                 case 2 -> {
-                    Client user = register();
+                    Client user = register(); // тут тільки клієнт
                     if (user != null) {
                         return user;
                     }
                 }
                 case 0 -> System.exit(0);
-                default -> System.out.println(" Невірний вибір");
+                default -> System.out.println("Невірний вибір");
             }
         }
     }
 
-    private Client login() {
+    private User login() {
         System.out.println("\n=== ВХІД ===");
         System.out.print("Email: ");
         String email = sc.nextLine();
@@ -62,13 +66,15 @@ public class AuthView {
         String password = sc.nextLine();
 
         try {
-            Client user = (Client) authService.login(email, password);
+            User user = authService.login(email, password); // повертає User
             System.out.println(ConsoleColors.GREEN + " Вхід успішний!" + ConsoleColors.RESET);
 
-            if (user.getProfile() == null) {
-                System.out.println(" Заповніть анкету, будь ласка");
-                if (!fillProfileWithAgeCheck(user)) {
-                    return null;
+            if (user instanceof Client client) {
+                if (client.getProfile() == null) {
+                    System.out.println(" Заповніть анкету, будь ласка");
+                    if (!fillProfileWithAgeCheck(client)) {
+                        return null;
+                    }
                 }
             }
 
@@ -94,9 +100,7 @@ public class AuthView {
                   new UserRegisterDto(email, password, confirm)
             );
 
-            System.out.println(ConsoleColors.GREEN +
-                  " Реєстрація успішна!" +
-                  ConsoleColors.RESET);
+            System.out.println(ConsoleColors.GREEN + " Реєстрація успішна!" + ConsoleColors.RESET);
             System.out.println(" Заповніть анкету, будь ласка");
 
             if (!fillProfileWithAgeCheck(user)) {
