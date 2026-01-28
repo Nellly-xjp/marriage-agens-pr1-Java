@@ -1,5 +1,10 @@
+package tyrkanych_marriageagency;
+
 import tyrkanych_marriageagency.ui.ConsoleApp;
 
-void main(String[] args) {
-    ConsoleApp.start();
+public class Main {
+
+    void main(String[] args) {
+        ConsoleApp.start();
+    }
 }

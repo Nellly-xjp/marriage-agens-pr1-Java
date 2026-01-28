@@ -24,7 +24,7 @@ public class UserView {
             printProfile();
 
             System.out.println("\n1 - ✏ Змінити анкету");
-            System.out.println("0 - 🔙 Назад у меню");
+            System.out.println("0 -  Назад у меню");
             System.out.print("Ваш вибір: ");
 
             int choice = Integer.parseInt(sc.nextLine());
@@ -35,7 +35,7 @@ public class UserView {
                     return;
                 }
                 default -> System.out.println(
-                      ConsoleColors.RED + "❌ Невірний вибір" + ConsoleColors.RESET);
+                      ConsoleColors.RED + "Невірний вибір" + ConsoleColors.RESET);
             }
         }
     }
@@ -94,6 +94,6 @@ public class UserView {
 
         uow.commit();
         System.out.println(
-              ConsoleColors.GREEN + "✅ Анкета успішно оновлена!" + ConsoleColors.RESET);
+              ConsoleColors.GREEN + " Анкета успішно оновлена!" + ConsoleColors.RESET);
     }
 }

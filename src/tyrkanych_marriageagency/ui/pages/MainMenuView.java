@@ -9,8 +9,10 @@ import tyrkanych_marriageagency.model.Client;
 import tyrkanych_marriageagency.model.Message;
 import tyrkanych_marriageagency.service.MatcherService;
 import tyrkanych_marriageagency.service.MessageService;
+import tyrkanych_marriageagency.ui.ascii.AsciiArt;
 import tyrkanych_marriageagency.ui.forms.MessageForm;
 import tyrkanych_marriageagency.unitofwork.UnitOfWork;
+import tyrkanych_marriageagency.util.ConsoleColors;
 
 public class MainMenuView {
 
@@ -35,8 +37,9 @@ public class MainMenuView {
     }
 
     public void show() {
+        AsciiArt.printLogo();
         while (true) {
-            System.out.println("\n=== Головне меню ===");
+            System.out.println("\n Головне меню " + ConsoleColors.RESET);
             System.out.println("1 - Дивитися анкети");
             System.out.println("2 - Моя анкета");
             System.out.println("3 - Хто мене лайкнув");
@@ -139,13 +142,13 @@ public class MainMenuView {
                           text
                     );
 
-                    System.out.println("✅ Повідомлення надіслано");
+                    System.out.println(" Повідомлення надіслано");
                 }
             }
         }
 
         if (!found) {
-            System.out.println("💔 У вас ще немає MATCH");
+            System.out.println(" У вас ще немає MATCH");
         }
     }
 
@@ -153,7 +156,7 @@ public class MainMenuView {
         List<Message> inbox = messageService.inbox(currentUser.getId());
 
         if (inbox.isEmpty()) {
-            System.out.println("📭 Немає повідомлень");
+            System.out.println(" Немає повідомлень");
             return;
         }
 
@@ -161,7 +164,7 @@ public class MainMenuView {
             Optional<Client> fromOpt = uow.clients().findById(m.fromUserId());
             if (fromOpt.isPresent()) {
                 Client from = fromOpt.get();
-                System.out.println("💬 Від " +
+                System.out.println(" Від " +
                       from.getProfile().getFirstName() +
                       ": " + m.text());
             }

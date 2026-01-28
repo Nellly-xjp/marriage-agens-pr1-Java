@@ -51,6 +51,38 @@
       "interests": [],
       "likedClients": [],
       "gender": "MALE",
+      "complaints": [],
+      "age": 18,
+      "city": "Uzhhorod",
+      "description": "Люблю спати ",
+      "firstName": "Корнелія",
+      "lastName": "Тирканич"
+    },
+    "id": "90b5b949-52fe-4991-a0d9-cfd503b71b75",
+    "email": "nelly@gmal.com",
+    "password": "e1d7b8541cc7c718567cf7f3644518e521b562ee23b4c9e9478c298a95946f66"
+  },
+  {
+    "profile": {
+      "interests": [],
+      "likedClients": [],
+      "gender": "MALE",
+      "complaints": [],
+      "age": 18,
+      "city": "Uzhhorod",
+      "description": "haha",
+      "firstName": "Nelly",
+      "lastName": "Kotlety"
+    },
+    "id": "ccf981d5-7c9d-4d98-9920-af93b5fa0a44",
+    "email": "nelly@gmail.com",
+    "password": "e1d7b8541cc7c718567cf7f3644518e521b562ee23b4c9e9478c298a95946f66"
+  },
+  {
+    "profile": {
+      "interests": [],
+      "likedClients": [],
+      "gender": "MALE",
       "age": 19,
       "city": "Uzhhorod",
       "description": "jyhtre",

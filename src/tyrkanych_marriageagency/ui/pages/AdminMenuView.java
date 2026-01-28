@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import tyrkanych_marriageagency.model.Client;
 import tyrkanych_marriageagency.service.MatcherService;
+import tyrkanych_marriageagency.ui.ascii.AsciiArt;
 import tyrkanych_marriageagency.unitofwork.UnitOfWork;
 import tyrkanych_marriageagency.util.ConsoleColors;
 
@@ -19,8 +20,9 @@ public class AdminMenuView {
     }
 
     public void show() {
+        AsciiArt.printAdminMenu();
         while (true) {
-            System.out.println("\n=== Адмін-меню ===");
+            System.out.println("\nАдмін-меню ");
             System.out.println("1 - Список MATCH-ів");
             System.out.println("2 - Список всіх анкет");
             System.out.println("3 - Анкети зі скаргами");

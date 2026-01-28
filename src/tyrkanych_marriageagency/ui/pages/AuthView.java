@@ -8,6 +8,7 @@ import tyrkanych_marriageagency.repository.AdminRepository;
 import tyrkanych_marriageagency.service.AuthService;
 import tyrkanych_marriageagency.service.ProfileService;
 import tyrkanych_marriageagency.service.UserService;
+import tyrkanych_marriageagency.ui.ascii.AsciiArt;
 import tyrkanych_marriageagency.ui.forms.ProfileForm;
 import tyrkanych_marriageagency.unitofwork.UnitOfWork;
 import tyrkanych_marriageagency.util.ConsoleColors;
@@ -29,9 +30,10 @@ public class AuthView {
     }
 
     public User show() {
+        AsciiArt.printLogoWelcome();
         while (true) {
             System.out.println(
-                  ConsoleColors.BLUE + "\n=== ШЛЮБНЕ АГЕНТСТВО ===" + ConsoleColors.RESET);
+                  ConsoleColors.BLUE + "\n ШЛЮБНЕ АГЕНТСТВО " + ConsoleColors.RESET);
             System.out.println("1 - Вхід");
             System.out.println("2 - Реєстрація");
             System.out.println("0 - Вийти з програми");
@@ -59,14 +61,15 @@ public class AuthView {
     }
 
     private User login() {
-        System.out.println("\n=== ВХІД ===");
+        AsciiArt.printAuthorization();
+        System.out.println("\n ВХІД ");
         System.out.print("Email: ");
         String email = sc.nextLine();
         System.out.print("Пароль: ");
         String password = sc.nextLine();
 
         try {
-            User user = authService.login(email, password); // повертає User
+            User user = authService.login(email, password);
             System.out.println(ConsoleColors.GREEN + " Вхід успішний!" + ConsoleColors.RESET);
 
             if (user instanceof Client client) {
@@ -86,7 +89,8 @@ public class AuthView {
     }
 
     private Client register() {
-        System.out.println("\n=== РЕЄСТРАЦІЯ ===");
+        AsciiArt.printRegistration();
+        System.out.println("\n РЕЄСТРАЦІЯ ");
 
         System.out.print("Email: ");
         String email = sc.nextLine();
